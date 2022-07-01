@@ -1,5 +1,9 @@
+// css
+import './index.scss';
+
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+// components
 import Home from './Home'
 import Category from './newsManage/Category'
 import Draft from './newsManage/Draft'
@@ -7,15 +11,30 @@ import RightList from './rightManage/RightList'
 import RoleList from './rightManage/RoleList'
 import ManageList from './userManage/ManageList'
 import MissPage from './MissPage'
+import SideMenu from '../../components/SideMenu';
+import TopHeader from '../../components/TopHeader'
+// antd
+import { Layout } from 'antd'
+const { Content } = Layout;
 
 export default function NewsSandBox() {
   return (
-    <div>
+    <Layout>
         {/* 侧边栏 */}
-        <div>daohanglan</div>
-        {/* 导航栏 */}
+        <SideMenu />
+        <Layout className="site-layout">
+          {/* 导航栏 */}
+        <TopHeader />
         {/* 路由子页面 */}
-        <Routes>
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            minHeight: 280,
+          }}
+        >
+          <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/user-manage/list" element={<ManageList/>}/>
             <Route path="/right-manage/role/list" element={<RoleList/>}/>
@@ -25,6 +44,8 @@ export default function NewsSandBox() {
             <Route path="/"  element={<Navigate  to="/home" replace/>}/>
             <Route path="*"  element={<MissPage />}/>
         </Routes>
-    </div>
+        </Content>
+        </Layout>
+    </Layout>
   )
 }
