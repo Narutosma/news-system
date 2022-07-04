@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../views/Login';
-import NewsSandBox from '../views/NewsSandBox';
+import NewsSandBox from '../views/NewsSandBox/index.jsx';
 
 import React from 'react'
 

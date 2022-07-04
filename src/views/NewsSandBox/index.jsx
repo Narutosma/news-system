@@ -41,8 +41,8 @@ export default function NewsSandBox() {
             <Route path="/right-manage/right/list" element={<RightList/>}/>
             <Route path="/news-manage/draft" element={<Draft/>}/>
             <Route path="/news-manage/category" element={<Category/>}/>
-            <Route path="/"  element={<Navigate  to="/home" replace/>}/>
-            <Route path="*"  element={<MissPage />}/>
+            <Route path="/" element={<Navigate  to="/home" replace/>}/>
+            <Route path="*" element={<MissPage />}/>
         </Routes>
         </Content>
         </Layout>
