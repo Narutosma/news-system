@@ -55,7 +55,6 @@ export default function SideMenu() {
       axios.get('http://localhost:3001/rights?_embed=children')
       .then(res => {
         const menu = deepMenu(res.data);
-        console.log(menu);
         setMenus(menu);
       });
     }, []);
@@ -68,7 +67,6 @@ export default function SideMenu() {
     // 获取当前路由
     const pathname = [location.pathname];
     const firstPath = ['/' + location.pathname.split('/')[1]];
-    console.log(firstPath);
     return (
         <Sider trigger={null} collapsible collapsed={collapsed}>
             <div style={{display: 'flex', height: '100%', flexDirection: "column"}}>
