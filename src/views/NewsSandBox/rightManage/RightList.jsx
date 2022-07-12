@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Tag, Button } from 'antd'
+import { Table, Tag, Button, Modal, Switch } from 'antd'
 import axios from 'axios'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+const { confirm } = Modal;
 
 export default function RightList() {
   const [dataSource, setDataSource] = useState([]);
@@ -9,14 +10,14 @@ export default function RightList() {
     axios.get('http://localhost:3001/rights?_embed=children')
       .then(res => {
         const list = res.data.map(item => {
-          if(item.children.length < 1){
+          if (item.children.length < 1) {
             item.children = null;
           }
           return item;
         })
         setDataSource(list)
       })
-  },[])
+  }, [])
 
   const columns = [
     {
@@ -43,24 +44,66 @@ export default function RightList() {
     },
     {
       title: '操作',
-      dataIndex: 'id',
-      render: (tag) => (
-         <>
-            <Button shape="circle" 
-                    danger 
-                    icon={<DeleteOutlined />}
-                    style={{marginRight: 10}} />
-            <Button shape="circle" type="primary" icon={<EditOutlined />} />
-          </>
+      render: (data) => (
+        <>
+          <Button shape="circle"
+            danger
+            icon={<DeleteOutlined />}
+            style={{ marginRight: 10 }}
+            onClick={() => { confirmMethods(data) }} />
+          <Switch checkedChildren="开启"
+            unCheckedChildren="关闭"
+            disabled={data.pagepermisson === undefined}
+            checked={data.pagepermisson}
+            onChange={() => { switchChange(data) }} />
+        </>
       )
     }
   ];
+  // 删除权限项
+  const deleteMethod = (data) => {
+    if (data.grade === 1) {
+      setDataSource(dataSource.filter(item => item.id !== data.id));
+      axios.delete(`http://localhost:3001/rights/${data.id}`);
+    } else {
+      const list = dataSource.filter(item => item.id === data.rightId);
+      list[0].children = list[0].children.filter(item => item.id !== data.id);
+      setDataSource([...dataSource]);
+      axios.delete(`http://localhost:3001/children/${data.id}`);
+    }
+  }
+  // 弹框
+  const confirmMethods = (data) => {
+    confirm({
+      title: '是否要删除该项?',
+      icon: <ExclamationCircleOutlined />,
+      onOk() {
+        console.log('OK');
+        deleteMethod(data);
+      },
+    });
+  }
+
+  // 权限切换
+  const switchChange = (data) => {
+    data.pagepermisson = data.pagepermisson === 0 ? 1 : 0;
+    setDataSource([...dataSource])
+    if (data.grade === 1) {
+      axios.patch(`http://localhost:3001/rights/${data.id}`, {
+        'pagepermisson': data.pagepermisson
+      })
+    }else{
+      axios.patch(`http://localhost:3001/children/${data.id}`, {
+        'pagepermisson': data.pagepermisson
+      })
+    }
+  }
   return (
     <Table columns={columns}
-           dataSource={dataSource} 
-           pagination={{
-            position: ['none', 'bottomRight'],
-            pageSize: 5
-           }}/>
+      dataSource={dataSource}
+      pagination={{
+        position: ['none', 'bottomRight'],
+        pageSize: 5
+      }} />
   )
 }

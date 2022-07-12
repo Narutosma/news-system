@@ -361,14 +361,14 @@
       "id": 14,
       "title": "新闻管理",
       "key": "/news-manage",
-      "pagepermisson": 1,
+      "pagepermisson": 0,
       "grade": 1
     },
     {
       "id": 21,
       "title": "审核管理",
       "key": "/audit-manage",
-      "pagepermisson": 1,
+      "pagepermisson": 0,
       "grade": 1
     },
     {
