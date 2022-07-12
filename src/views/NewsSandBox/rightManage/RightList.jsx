@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Tag, Button, Modal, Switch } from 'antd'
-import axios from 'axios'
+import { getMenuSide, deleteMenuItem, patchMenuItem } from '@/api';
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 const { confirm } = Modal;
 
 export default function RightList() {
   const [dataSource, setDataSource] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3001/rights?_embed=children')
-      .then(res => {
-        const list = res.data.map(item => {
+    getMenuSide().then(res => {
+        const list = res.map(item => {
           if (item.children.length < 1) {
             item.children = null;
           }
@@ -64,13 +63,12 @@ export default function RightList() {
   const deleteMethod = (data) => {
     if (data.grade === 1) {
       setDataSource(dataSource.filter(item => item.id !== data.id));
-      axios.delete(`http://localhost:3001/rights/${data.id}`);
     } else {
       const list = dataSource.filter(item => item.id === data.rightId);
       list[0].children = list[0].children.filter(item => item.id !== data.id);
       setDataSource([...dataSource]);
-      axios.delete(`http://localhost:3001/children/${data.id}`);
     }
+    deleteMenuItem(data);
   }
   // 弹框
   const confirmMethods = (data) => {
@@ -88,15 +86,7 @@ export default function RightList() {
   const switchChange = (data) => {
     data.pagepermisson = data.pagepermisson === 0 ? 1 : 0;
     setDataSource([...dataSource])
-    if (data.grade === 1) {
-      axios.patch(`http://localhost:3001/rights/${data.id}`, {
-        'pagepermisson': data.pagepermisson
-      })
-    }else{
-      axios.patch(`http://localhost:3001/children/${data.id}`, {
-        'pagepermisson': data.pagepermisson
-      })
-    }
+    patchMenuItem(data);
   }
   return (
     <Table columns={columns}

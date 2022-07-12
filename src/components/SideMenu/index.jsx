@@ -7,11 +7,15 @@ import style from './index.module.scss';
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import axios from 'axios';
+import { getMenuSide } from '@/api'
 const { Sider } = Layout;
 
+/**
+ * 菜单栏
+ */
 export default function SideMenu() {
     const [collapsed] = useState(false);
+    // 菜单数据
     const [menus, setMenus] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
@@ -52,9 +56,8 @@ export default function SideMenu() {
         })
       }
       // 获取menu数据
-      axios.get('http://localhost:3001/rights?_embed=children')
-      .then(res => {
-        const menu = deepMenu(res.data);
+      getMenuSide().then(res => {
+        const menu = deepMenu(res);
         setMenus(menu);
       });
     }, []);
