@@ -45,16 +45,16 @@ export default function RightList() {
       title: '操作',
       render: (data) => (
         <>
-          <Button shape="circle"
-            danger
-            icon={<DeleteOutlined />}
-            style={{ marginRight: 10 }}
-            onClick={() => { confirmMethods(data) }} />
           <Switch checkedChildren="开启"
             unCheckedChildren="关闭"
+            style={{ marginRight: 10 }}
             disabled={data.pagepermisson === undefined}
             checked={data.pagepermisson}
             onChange={() => { switchChange(data) }} />
+          <Button shape="circle"
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => { confirmMethods(data) }} />
         </>
       )
     }
@@ -76,7 +76,6 @@ export default function RightList() {
       title: '是否要删除该项?',
       icon: <ExclamationCircleOutlined />,
       onOk() {
-        console.log('OK');
         deleteMethod(data);
       },
     });

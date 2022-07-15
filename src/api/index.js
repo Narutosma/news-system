@@ -1,7 +1,7 @@
 import serverAxios from '@/axios';
 
 /**
- * 获取左侧菜单栏数据
+ * 获取权限列表
  * @returns Promise
  */
 export const getMenuSide = () => {
@@ -43,5 +43,38 @@ export const patchMenuItem = (data) => {
         method: 'patch',
         url,
         data
+    })
+}
+
+/**
+ *  获取角色列表
+ */
+export const getRoleList = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/roles'
+    })
+}
+
+/**
+ *  删除角色权限
+ */
+export const deleteRole = (data) => {
+    return serverAxios({
+        method: 'delete',
+        url: `/roles/${data.id}`
+    })
+}
+
+/**
+ * 修改角色权限
+ */
+export const updateRole = (id, rights) => {
+    return serverAxios({
+        method: 'patch',
+        url: `/roles/${id}`,
+        data: {
+            rights
+        }
     })
 }

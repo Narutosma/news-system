@@ -341,21 +341,99 @@
       "title": "首页",
       "key": "/home",
       "pagepermisson": 1,
-      "grade": 1
+      "grade": 1,
+      "children": null
     },
     {
       "id": 2,
       "title": "用户管理",
       "key": "/user-manage",
       "pagepermisson": 1,
-      "grade": 1
+      "grade": 1,
+      "children": [
+        {
+          "id": 3,
+          "title": "添加用户",
+          "rightId": 2,
+          "key": "/user-manage/add",
+          "grade": 2
+        },
+        {
+          "id": 4,
+          "title": "删除用户",
+          "rightId": 2,
+          "key": "/user-manage/delete",
+          "grade": 2
+        },
+        {
+          "id": 5,
+          "title": "修改用户",
+          "rightId": 2,
+          "key": "/user-manage/update",
+          "grade": 2
+        },
+        {
+          "id": 6,
+          "title": "用户列表",
+          "rightId": 2,
+          "key": "/user-manage/list",
+          "pagepermisson": 1,
+          "grade": 2
+        }
+      ]
     },
     {
       "id": 7,
       "title": "权限管理",
       "key": "/right-manage",
       "pagepermisson": 1,
-      "grade": 1
+      "grade": 1,
+      "children": [
+        {
+          "id": 8,
+          "title": "角色列表",
+          "rightId": 7,
+          "key": "/right-manage/role/list",
+          "pagepermisson": 1,
+          "grade": 2
+        },
+        {
+          "id": 9,
+          "title": "权限列表",
+          "rightId": 7,
+          "key": "/right-manage/right/list",
+          "pagepermisson": 1,
+          "grade": 2
+        },
+        {
+          "id": 10,
+          "title": "修改角色",
+          "rightId": 7,
+          "key": "/right-manage/role/update",
+          "grade": 2
+        },
+        {
+          "id": 11,
+          "title": "删除角色",
+          "rightId": 7,
+          "key": "/right-manage/role/delete",
+          "grade": 2
+        },
+        {
+          "id": 12,
+          "title": "修改权限",
+          "rightId": 7,
+          "key": "/right-manage/right/update",
+          "grade": 2
+        },
+        {
+          "id": 13,
+          "title": "删除权限",
+          "rightId": 7,
+          "key": "/right-manage/right/delete",
+          "grade": 2
+        }
+      ]
     },
     {
       "id": 14,
