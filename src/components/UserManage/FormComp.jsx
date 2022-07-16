@@ -1,8 +1,12 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import { Input, Form, Select } from 'antd';
 const { Option } = Select;
-const FormComp = forwardRef(({ regionList, roleList }, ref) => {
+const FormComp = forwardRef((props, ref) => {
     const [isDisable, setIsDisable] = useState(false);
+
+    useEffect(() => {
+        setIsDisable(props.updateIsDisable);
+    }, [props.updateIsDisable])
     // 角色切换时触发的事件
     const rolesChange = (value) => {
         // 当角色为超级管理员时，区域自动变为全球且不可切换
@@ -56,7 +60,7 @@ const FormComp = forwardRef(({ regionList, roleList }, ref) => {
                     ]}
             >
                 <Select disabled={isDisable}>
-                    {regionList.map(item => <Option value={item.value} key={item.id}>{item.title}</Option>)}
+                    {props.regionList.map(item => <Option value={item.value} key={item.id}>{item.title}</Option>)}
                 </Select>
             </Form.Item>
             <Form.Item
@@ -70,7 +74,7 @@ const FormComp = forwardRef(({ regionList, roleList }, ref) => {
                 ]}
             >
                 <Select onChange={(value) => rolesChange(value)}>
-                    {roleList.map(item => <Option value={item.roleType} key={item.id}>{item.roleName}</Option>)}
+                    {props.roleList.map(item => <Option value={item.roleType} key={item.id}>{item.roleName}</Option>)}
                 </Select>
             </Form.Item>
         </Form>

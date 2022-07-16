@@ -108,6 +108,16 @@ export const getUser = () => {
     })
 }
 
+/**
+ *  更新用户数据
+ */
+export const updateUser = (data) => {
+    return serverAxios({
+        method: 'patch',
+        url: `/users/${data.id}`,
+        data
+    })
+}
 
 // 获取区域列表
 export const getRegion = () => {

@@ -12,11 +12,44 @@
     {
       "username": "Aimer",
       "password": "123456",
-      "region": "亚洲",
-      "roleId": 2,
+      "region": "",
+      "roleId": 1,
       "default": false,
       "roleState": true,
-      "id": 2
+      "id": 2,
+      "role": {
+        "id": 2,
+        "roleName": "区域管理员",
+        "roleType": 2,
+        "rights": [
+          "/home",
+          "/user-manage",
+          "/user-manage/add",
+          "/user-manage/delete",
+          "/user-manage/update",
+          "/user-manage/list",
+          "/news-manage/list",
+          "/news-manage/add",
+          "/publish-manage",
+          "/publish-manage/unpublished",
+          "/publish-manage/published",
+          "/publish-manage/sunset",
+          "/news-manage",
+          "/audit-manage",
+          "/audit-manage/audit",
+          "/audit-manage/list",
+          "/right-manage/right/delete",
+          "/right-manage/role/update",
+          "/right-manage/right/update",
+          "/right-manage/role/delete",
+          "/right-manage",
+          "/right-manage/role/list",
+          "/news-manage/update/:id",
+          "/news-manage/preview/:id",
+          "/news-manage/draft",
+          "/news-manage/category"
+        ]
+      }
     },
     {
       "username": "Asuna",
@@ -25,16 +58,80 @@
       "roleId": 2,
       "default": false,
       "roleState": true,
-      "id": 3
+      "id": 3,
+      "role": {
+        "id": 2,
+        "roleName": "区域管理员",
+        "roleType": 2,
+        "rights": [
+          "/home",
+          "/user-manage",
+          "/user-manage/add",
+          "/user-manage/delete",
+          "/user-manage/update",
+          "/user-manage/list",
+          "/news-manage/list",
+          "/news-manage/add",
+          "/publish-manage",
+          "/publish-manage/unpublished",
+          "/publish-manage/published",
+          "/publish-manage/sunset",
+          "/news-manage",
+          "/audit-manage",
+          "/audit-manage/audit",
+          "/audit-manage/list",
+          "/right-manage/right/delete",
+          "/right-manage/role/update",
+          "/right-manage/right/update",
+          "/right-manage/role/delete",
+          "/right-manage",
+          "/right-manage/role/list",
+          "/news-manage/update/:id",
+          "/news-manage/preview/:id",
+          "/news-manage/draft",
+          "/news-manage/category"
+        ]
+      }
     },
     {
       "username": "L",
       "password": "123456",
-      "region": "南美洲",
+      "region": "欧洲",
       "roleId": 3,
       "default": false,
       "roleState": true,
-      "id": 4
+      "id": 4,
+      "role": {
+        "id": 3,
+        "roleName": "区域编辑",
+        "roleType": 3,
+        "rights": [
+          "/home",
+          "/audit-manage",
+          "/audit-manage/list",
+          "/publish-manage",
+          "/publish-manage/unpublished",
+          "/publish-manage/published",
+          "/publish-manage/sunset",
+          "/audit-manage/audit",
+          "/news-manage/list",
+          "/news-manage/add",
+          "/news-manage/update/:id",
+          "/news-manage/preview/:id",
+          "/news-manage/draft",
+          "/news-manage/category",
+          "/news-manage"
+        ]
+      }
+    },
+    {
+      "username": "Naruto",
+      "password": "sasuki",
+      "region": "",
+      "roleId": 1,
+      "default": false,
+      "roleState": true,
+      "id": 5
     }
   ],
   "roles": [
