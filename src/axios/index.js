@@ -18,7 +18,7 @@ const serverAxios = axios.create({
  serverAxios.interceptors.request.use(
     (config) => {
         // 自定义请求头：只对post方法生效
-        config.headers.post['content-type'] = 'application/x-www-form-urlencoded';
+        // config.headers.post['content-type'] = 'application/x-www-form-urlencoded';
         return config;
     },
     (error) => {

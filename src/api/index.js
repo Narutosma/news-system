@@ -78,3 +78,41 @@ export const updateRole = (id, rights) => {
         }
     })
 }
+
+/**
+ *  添加用户
+ */
+export const addUser = (data) => {
+    return serverAxios({
+        method: 'post',
+        url: '/users',
+        data
+    })
+}
+
+// 获取用户列表
+export const getUser = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/users?_expand=role',
+    })
+}
+
+/**
+ * 删除用户
+ */
+ export const deleteUser = (data) => {
+    return serverAxios({
+        method: 'delete',
+        url: `/users/${data.id}`,
+    })
+}
+
+
+// 获取区域列表
+export const getRegion = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/regions',
+    })
+}
