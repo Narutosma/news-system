@@ -5,6 +5,10 @@
     cursor: pointer;
     transition: color 0.3s;
   }
+
+  #root{
+    height: 100%;
+  }
   
   #components-layout-demo-custom-trigger .trigger:hover {
     color: #1890ff;

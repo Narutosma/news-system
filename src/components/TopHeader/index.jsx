@@ -5,10 +5,12 @@ import {
 } from '@ant-design/icons';
 import React, { useState } from 'react'
 import { Layout, Dropdown, Menu, Space, Avatar } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import style from './index.module.scss';
 const { Header } = Layout;
 export default function TopHeader() {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate();
     const collapsedHadnle = () => {
         setCollapsed(!collapsed);
     }
@@ -34,7 +36,13 @@ export default function TopHeader() {
                 {
                     key: '4',
                     danger: true,
-                    label: 'a danger item',
+                    label: '退出登录',
+                    onClick: () => {
+                        // 退出登陆: 清除token
+                        localStorage.removeItem('token');
+                        // 返回到登陆页
+                        navigate('/login', {replace: true});
+                    }
                 },
             ]}
         />
