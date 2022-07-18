@@ -11,6 +11,20 @@ export const getMenuSide = () => {
     })
 }
 
+export const getRights = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/rights'
+    })
+}
+
+export const getChildren = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/children'
+    })
+}
+
 /**
  *  删除权限项
  */

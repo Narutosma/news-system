@@ -93,7 +93,7 @@ export default function RoleList() {
             danger
             icon={<DeleteOutlined />}
             onClick={() => { confirmMethod(data) }} />
-          <Modal title="Basic Modal"
+          <Modal title="权限分配"
             visible={modalVisible}
             onOk={() => { handleOk(data) }}
             onCancel={handleCancel}>

@@ -550,8 +550,26 @@
       "id": 21,
       "title": "审核管理",
       "key": "/audit-manage",
-      "pagepermisson": 0,
-      "grade": 1
+      "pagepermisson": 1,
+      "grade": 1,
+      "children": [
+        {
+          "id": 22,
+          "title": "审核新闻",
+          "rightId": 21,
+          "key": "/audit-manage/audit",
+          "pagepermisson": 1,
+          "grade": 2
+        },
+        {
+          "id": 23,
+          "title": "审核列表",
+          "rightId": 21,
+          "key": "/audit-manage/list",
+          "pagepermisson": 1,
+          "grade": 2
+        }
+      ]
     },
     {
       "id": 24,
