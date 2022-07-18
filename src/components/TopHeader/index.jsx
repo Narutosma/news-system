@@ -14,27 +14,17 @@ export default function TopHeader() {
     const collapsedHadnle = () => {
         setCollapsed(!collapsed);
     }
+    // 获取登陆数据
+    const {username, role: {roleName}} = JSON.parse(localStorage.getItem('token'));
     const menu = (
         <Menu
             items={[
                 {
                     key: '1',
-                    label: (
-                        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                            1st menu item
-                        </a>
-                    ),
+                    label: roleName,
                 },
                 {
                     key: '2',
-                    label: (
-                        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                            2nd menu item (disabled)
-                        </a>
-                    ),
-                },
-                {
-                    key: '4',
                     danger: true,
                     label: '退出登录',
                     onClick: () => {
@@ -66,7 +56,7 @@ export default function TopHeader() {
             <Dropdown 
                 overlay={menu}>
                 <Space  className={style.spaceStyle}>
-                    欢迎L回来
+                    欢迎{username}回来
                     <Avatar size="default" icon={<UserOutlined />} />
                 </Space>
             </Dropdown>

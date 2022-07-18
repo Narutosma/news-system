@@ -16,14 +16,34 @@ export default function ManageList() {
   const [updateId, setUpdateId] = useState(0);
   const addForm = useRef(null);
   const updateForm = useRef(null);
+
+  const { username, region, role: {roleType} } = JSON.parse(localStorage.getItem('token'));
+  
   useEffect(() => {
+    const roleMap = {
+      '1': 'superAdmin',
+      '2': 'admin',
+      '3': 'editor'
+  }
     // 获取用户列表
-    getUser().then(res => setDataSource(res));
+    getUser().then(res => {
+      // console.log(res);
+      // 如果是超级管理员的话就展示全部
+      if(roleMap[roleType] === 'superAdmin'){
+        setDataSource(res)
+      }else{
+        // 如果不是就只展示当前区域的数据
+        setDataSource([
+          ...res.filter(item => item.username === username),
+          ...res.filter(item => item.region === region && roleMap[item.roleId] === 'editor')
+        ])
+      }
+    });
     // 获取区域列表
     getRegion().then(res => setRegionList(res));
     // 获取角色列表
     getRoleList().then(res => setRoleList(res));
-  }, []);
+  }, [username, region, roleType]);
 
   // 添加用户
   const addUserMethods = () => {
@@ -211,6 +231,7 @@ export default function ManageList() {
           regionList={regionList}
           roleList={roleList}
           updateIsDisable={updateIsDisable}
+          isUpdate={true}
           ref={updateForm} />
       </Modal>
     </>

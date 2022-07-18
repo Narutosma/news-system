@@ -19,6 +19,7 @@ export default function SideMenu() {
     const [menus, setMenus] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+
     useEffect(() => {
       // icon映射表
       const iconMap = {
@@ -29,6 +30,9 @@ export default function SideMenu() {
         '/right-manage/role/list': <CrownOutlined />,
         '/right-manage/right/list': <CrownOutlined />
       }
+
+      // 登陆用户
+      const { role: {rights} } = JSON.parse(localStorage.getItem('token'));
       // 递归设置menu属性
       function deepMenu(menus){
         if(!Array.isArray(menus)){
@@ -36,7 +40,7 @@ export default function SideMenu() {
         }
         // 过滤掉不需要展示在页面上的数据
         return menus.filter(item => {
-          return item.pagepermisson === 1;
+          return item.pagepermisson === 1 && rights.includes(item.key);
         }).map(item => {
           // 把数据映射成需要的格式
           let children;

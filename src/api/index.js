@@ -126,3 +126,13 @@ export const getRegion = () => {
         url: '/regions',
     })
 }
+
+/**
+ *  登陆
+ */
+export const loginUser = (data) => {
+    return serverAxios({
+        method: 'get',
+        url: `/users?username=${data.username}&password=${data.password}&_expand=role`
+    })
+}

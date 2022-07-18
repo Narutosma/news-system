@@ -1,10 +1,21 @@
 import React from 'react';
 import './index.scss';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '@/api';
 export default function Login() {
+  const navigate = useNavigate();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    loginUser(values).then(res => {
+      const user = res[0];
+      if(user){
+        localStorage.setItem('token', JSON.stringify(user));
+        navigate('/');
+      }else{
+        message.error('账号或者密码错误!!!');
+      }
+    })
   };
   return (
     <div className='login-container'>
@@ -39,7 +50,6 @@ export default function Login() {
               placeholder="密码"
             />
           </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
               登陆
