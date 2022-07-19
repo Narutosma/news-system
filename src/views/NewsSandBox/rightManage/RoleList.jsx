@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Tree } from 'antd';
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { getRoleList, deleteRole, getMenuSide, updateRole } from '@/api';
+import { getRoleList, deleteRole, getMenuSide, updateRole } from '../../../api';
 const { confirm } = Modal;
 
 export default function RoleList() {

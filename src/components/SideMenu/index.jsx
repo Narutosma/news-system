@@ -7,7 +7,7 @@ import style from './index.module.scss';
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { getMenuSide } from '@/api'
+import { getMenuSide } from '../../api'
 const { Sider } = Layout;
 
 /**

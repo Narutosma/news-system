@@ -3,7 +3,7 @@ import './index.scss';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '@/api';
+import { loginUser } from '../../api';
 export default function Login() {
   const navigate = useNavigate();
   const onFinish = (values) => {

@@ -1,4 +1,4 @@
-import serverAxios from '@/axios';
+import serverAxios from '../axios';
 
 /**
  * 获取权限列表
@@ -148,5 +148,26 @@ export const loginUser = (data) => {
     return serverAxios({
         method: 'get',
         url: `/users?username=${data.username}&password=${data.password}&_expand=role`
+    })
+}
+
+/**
+ *  获取分类信息
+ */
+export const getCategories = () => {
+    return serverAxios({
+        method: 'get',
+        url: '/categories'
+    })
+}
+
+/**
+ *  添加新闻
+ */
+export const addNews = data => {
+    return serverAxios({
+        method: 'post',
+        url: '/news',
+        data
     })
 }

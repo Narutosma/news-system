@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Tag, Button, Modal, Switch } from 'antd'
-import { getMenuSide, deleteMenuItem, patchMenuItem } from '@/api';
+import { getMenuSide, deleteMenuItem, patchMenuItem } from '../../../api';
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 const { confirm } = Modal;
 

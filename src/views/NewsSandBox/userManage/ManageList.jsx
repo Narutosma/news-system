@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Table, Switch, Button, Modal } from 'antd';
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { getUser, getRegion, getRoleList, addUser, deleteUser, updateUser } from '@/api';
-import FormComp from '@/components/UserManage/FormComp';
+import { getUser, getRegion, getRoleList, addUser, deleteUser, updateUser } from '../../../api';
+import FormComp from '../../../components/UserManage/FormComp';
 
 const { confirm } = Modal;
 
