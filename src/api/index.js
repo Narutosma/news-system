@@ -171,3 +171,44 @@ export const addNews = data => {
         data
     })
 }
+
+/**
+ * 修改新闻
+ */
+export const updateNews = data => {
+    return serverAxios({
+        method: 'patch',
+        url: `/news/${data.id}`,
+        data
+    })
+}
+
+/**
+ *  获取草稿箱内的新闻列表
+ */
+export const getDraftNews = (author) => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?author=${author}&auditState=0&_expand=category`,
+    })
+}
+
+/**
+ *  获取单个新闻详情
+ */
+export const getNewsItem = id => {
+    return serverAxios({
+        method: 'get',
+        url: `/news/${id}?_expand=category`,
+    })
+}
+
+/**
+ *  删除草稿箱内的新闻列表
+ */
+ export const deleteDraftNews = (id) => {
+    return serverAxios({
+        method: 'delete',
+        url: `/news/${id}`,
+    })
+}

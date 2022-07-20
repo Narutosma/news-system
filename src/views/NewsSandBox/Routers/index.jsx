@@ -14,6 +14,8 @@ import Published from '../PublishManage/Published';
 import Sunset from '../PublishManage/Sunset';
 import Audit from '../AuditManage/Audit';
 import List from '../AuditManage/list';
+import Preview from '../Preview';
+import Update from '../Update';
 
 import { getRights, getChildren } from '../../../api';
 
@@ -27,6 +29,8 @@ export default function Routers() {
         '/news-manage/add': <Add/>,
         '/news-manage/draft': <Draft/>,
         '/news-manage/category': <Category/>,
+        '/news-manage/preview/:id': <Preview/>,
+        '/news-manage/update/:id': <Update/>,
         '/publish-manage/unpublished': <Unpublished/>,
         '/publish-manage/published': <Published/>,
         '/publish-manage/sunset': <Sunset/>,
@@ -45,7 +49,7 @@ export default function Routers() {
 
     // 切换
     const checkRoute = (item) => {
-        return routerMap[item.key] && item.pagepermisson;
+        return routerMap[item.key] && (item.pagepermisson || item.routepermisson);
     }
     // 权限
     const checkUserPermsson = (item) => {
