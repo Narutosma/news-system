@@ -13,7 +13,7 @@ export default function Draft() {
     getDraftNews(username).then(res => {
       setDataSource(res);
     })
-  }, []);
+  },);
 
   // 删除草稿箱中的新闻数据
   const deleteDraftHandle = id => {
@@ -38,8 +38,8 @@ export default function Draft() {
       title: '是否要提交至审核列表?',
       icon: <ExclamationCircleOutlined />,
       onOk() {
-        updateNews({id, auditState: 1}).then(() => message.success('提交成功'));
-        navigator('/audit-manage/audit');
+        updateNews({ id, auditState: 1 }).then(() => message.success('提交成功'));
+        navigator('/audit-manage/list');
       },
     });
   }
@@ -92,6 +92,12 @@ export default function Draft() {
     }
   ];
   return (
-    <Table dataSource={dataSource} columns={columns} rowKey={item => item.id} />
+    <Table dataSource={dataSource}
+      columns={columns}
+      rowKey={item => item.id}
+      pagination={{
+        position: ['none', 'bottomRight'],
+        pageSize: 5
+      }} />
   )
 }

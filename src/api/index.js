@@ -194,6 +194,26 @@ export const getDraftNews = (author) => {
 }
 
 /**
+ *  获取审核列表内的新闻列表
+ */
+export const getAuditNews = (author) => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?author=${author}&auditState_ne=0&publishState_lte=1&_expand=category`,
+    })
+}
+
+/**
+ *  获取审核新闻的列表详情
+ */
+export const getAuditNewsList = () => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?auditState=1&_expand=category`,
+    })
+}
+
+/**
  *  获取单个新闻详情
  */
 export const getNewsItem = id => {
