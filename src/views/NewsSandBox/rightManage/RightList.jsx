@@ -8,14 +8,14 @@ export default function RightList() {
   const [dataSource, setDataSource] = useState([]);
   useEffect(() => {
     getMenuSide().then(res => {
-        const list = res.map(item => {
-          if (item.children.length < 1) {
-            item.children = null;
-          }
-          return item;
-        })
-        setDataSource(list)
+      const list = res.map(item => {
+        if (item.children.length < 1) {
+          item.children = null;
+        }
+        return item;
       })
+      setDataSource(list)
+    })
   }, [])
 
   const columns = [
@@ -75,6 +75,8 @@ export default function RightList() {
     confirm({
       title: '是否要删除该项?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         deleteMethod(data);
       },

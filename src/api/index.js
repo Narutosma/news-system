@@ -235,6 +235,16 @@ export const getAuditNewsList = () => {
 }
 
 /**
+ * 获取发布列表新闻
+ */
+ export const getPulishNews = (data) => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?author=${data.author}&publishState=${data.publishState}&_expand=category`,
+    })
+}
+
+/**
  *  获取单个新闻详情
  */
 export const getNewsItem = id => {

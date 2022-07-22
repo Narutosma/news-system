@@ -17,21 +17,21 @@ export default function ManageList() {
   const addForm = useRef(null);
   const updateForm = useRef(null);
 
-  const { username, region, role: {roleType} } = JSON.parse(localStorage.getItem('token'));
-  
+  const { username, region, role: { roleType } } = JSON.parse(localStorage.getItem('token'));
+
   useEffect(() => {
     const roleMap = {
       '1': 'superAdmin',
       '2': 'admin',
       '3': 'editor'
-  }
+    }
     // 获取用户列表
     getUser().then(res => {
       // console.log(res);
       // 如果是超级管理员的话就展示全部
-      if(roleMap[roleType] === 'superAdmin'){
+      if (roleMap[roleType] === 'superAdmin') {
         setDataSource(res)
-      }else{
+      } else {
         // 如果不是就只展示当前区域的数据
         setDataSource([
           ...res.filter(item => item.username === username),
@@ -73,6 +73,8 @@ export default function ManageList() {
     confirm({
       title: '是否要删除该项?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         const list = dataSource.filter(item => item.id !== data.id);
         setDataSource([...list]);
@@ -144,7 +146,7 @@ export default function ManageList() {
           }
         })
       ],
-      onFilter: (value, record) =>  value === record.region,
+      onFilter: (value, record) => value === record.region,
       render: (region) => (
         <b>{region === '' ? '全国' : region}</b>
       )

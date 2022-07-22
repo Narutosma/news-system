@@ -26,6 +26,8 @@ export default function RoleList() {
     confirm({
       title: '是否要删除该用户?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         // 删除用户
         deleteRoleMethod(data);
@@ -42,7 +44,7 @@ export default function RoleList() {
   // 点击弹框确定按钮
   const handleOk = () => {
     const list = dataSource.map(item => {
-      if(item.id === currentId){
+      if (item.id === currentId) {
         return {
           ...item,
           rigths: rigthsList
@@ -51,7 +53,7 @@ export default function RoleList() {
       return item;
     })
     setDataSource(list);
-    setModalVisible(false); 
+    setModalVisible(false);
     updateRole(currentId, rigthsList);
   }
 
@@ -102,7 +104,7 @@ export default function RoleList() {
               checkedKeys={rigthsList}
               onCheck={(data) => checkHandle(data)}
               treeData={treeData}
-              // checkStrictly={true}
+            // checkStrictly={true}
             />
           </Modal>
         </>

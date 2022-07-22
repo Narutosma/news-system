@@ -14,6 +14,8 @@ export default function Category() {
     confirm({
       title: '是否要删除该项?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         deleteCategory(id).then(() => message.success('删除成功'));
         setDataSource([...dataSource.filter(item => item.id !== id)]);

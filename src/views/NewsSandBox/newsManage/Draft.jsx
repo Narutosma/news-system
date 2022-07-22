@@ -20,6 +20,8 @@ export default function Draft() {
     confirm({
       title: '是否要删除该项?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         deleteDraftNews(id).then(() => message.success('删除成功'));
         setDataSource([...dataSource.filter(item => item.id !== id)]);
@@ -37,6 +39,8 @@ export default function Draft() {
     confirm({
       title: '是否要提交至审核列表?',
       icon: <ExclamationCircleOutlined />,
+      okText: "确定",
+      cancelText: "取消",
       onOk() {
         updateNews({ id, auditState: 1 }).then(() => message.success('提交成功'));
         navigator('/audit-manage/list');
