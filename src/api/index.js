@@ -162,6 +162,27 @@ export const getCategories = () => {
 }
 
 /**
+ *  删除分类
+ */
+export const deleteCategory = id => {
+    return serverAxios({
+        method: 'delete',
+        url: `/categories/${id}`
+    })
+}
+
+/**
+ * 编辑分类
+ */
+export const editCategory = data => {
+    return serverAxios({
+        method: 'patch',
+        url: `/categories/${data.id}`,
+        data
+    })
+}
+
+/**
  *  添加新闻
  */
 export const addNews = data => {
