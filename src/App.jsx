@@ -1,9 +1,13 @@
 import './App.css';
 import IndexRouter from './router/IndexRouter';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 function App() {
   return (
     <>
-      <IndexRouter />
+      <Provider store={store}>
+        <IndexRouter />
+      </Provider>
     </>
   );
 }

@@ -3,16 +3,19 @@ import {
     MenuUnfoldOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import React, { useState } from 'react'
+import React from 'react'
 import { Layout, Dropdown, Menu, Space, Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { reversal } from '../../redux/features/collapsed/collapsedSlice';
 import style from './index.module.scss';
 const { Header } = Layout;
-export default function TopHeader() {
-    const [collapsed, setCollapsed] = useState(false);
+const TopHeader = () => {
+    const collapsed = useSelector(state => state.collapsed.value);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const collapsedHadnle = () => {
-        setCollapsed(!collapsed);
+        dispatch(reversal());
     }
     // 获取登陆数据
     const {username, role: {roleName}} = JSON.parse(localStorage.getItem('token'));
@@ -63,3 +66,4 @@ export default function TopHeader() {
         </Header>
     )
 }
+export default TopHeader;

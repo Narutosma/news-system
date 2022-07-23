@@ -6,6 +6,7 @@ import {
 import style from './index.module.scss';
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Layout, Menu } from 'antd';
 import { getMenuSide } from '../../api'
 const { Sider } = Layout;
@@ -14,7 +15,7 @@ const { Sider } = Layout;
  * 菜单栏
  */
 export default function SideMenu() {
-    const [collapsed] = useState(false);
+    const collapsed = useSelector(state => state.collapsed.value);
     // 菜单数据
     const [menus, setMenus] = useState([]);
     const navigate = useNavigate();
