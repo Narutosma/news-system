@@ -13,7 +13,7 @@ export default function Draft() {
     getDraftNews(username).then(res => {
       setDataSource(res);
     })
-  });
+  }, []);
 
   // 删除草稿箱中的新闻数据
   const deleteDraftHandle = id => {

@@ -12,7 +12,7 @@ export default function Preview() {
         getNewsItem(params.id).then(res => {
             setNewsDetail(res);
         })
-    }, [params]);
+    }, []);
     return (
         <div>
             <PageHeader

@@ -6,13 +6,13 @@ import { auditMap, colorMap } from '../../../utils/datas';
 
 export default function List() {
   const [dataSource, setDataSource] = useState([]);
-  const { username } = JSON.parse(localStorage.getItem('token'));
   const navigate = useNavigate();
   useEffect(() => {
+    const { username } = JSON.parse(localStorage.getItem('token'));
     getAuditNews(username).then(res => {
       setDataSource(res);
     })
-  })
+  }, []);
 
   const handleClick = (value, item) => {
     if (value === '修改') {

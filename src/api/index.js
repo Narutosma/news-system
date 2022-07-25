@@ -255,6 +255,25 @@ export const getNewsItem = id => {
 }
 
 /**
+ *  获取根据相应字段排序的新闻数据
+ */
+export const getOrderNews = (field) => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?publishState=2&_expand=category&_sort=${field}&_order=desc&_limit=5`,
+    })
+}
+
+/**
+ *  获取发布的新闻列表
+ */
+export const getPulishedNews = () => {
+    return serverAxios({
+        method: 'get',
+        url: `/news?publishState=2&_expand=category`,
+    })
+}
+/**
  *  删除草稿箱内的新闻列表
  */
  export const deleteDraftNews = (id) => {

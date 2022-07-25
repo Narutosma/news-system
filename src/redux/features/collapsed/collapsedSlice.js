@@ -7,7 +7,6 @@ export const collapsedSlice = createSlice({
   },
   reducers: {
     reversal: (state, payload) => {
-      console.log(payload);
       state.value = !state.value;
     }
   }
