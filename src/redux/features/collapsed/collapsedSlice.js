@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const collapsedSlice = createSlice({
   name: 'collapsed',
@@ -6,7 +6,8 @@ export const collapsedSlice = createSlice({
     value: false,
   },
   reducers: {
-    reversal: (state) => {
+    reversal: (state, payload) => {
+      console.log(payload);
       state.value = !state.value;
     }
   }

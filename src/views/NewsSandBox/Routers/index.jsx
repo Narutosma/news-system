@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { Spin } from 'antd';
 // components
 import Home from '../Home'
 import Add from '../NewsManage/Add'
@@ -16,6 +17,7 @@ import Audit from '../AuditManage/Audit';
 import List from '../AuditManage/list';
 import Preview from '../Preview';
 import Update from '../Update';
+import { useSelector } from 'react-redux';
 
 import { getRights, getChildren } from '../../../api';
 
@@ -38,6 +40,7 @@ export default function Routers() {
         '/audit-manage/audit': <Audit/>
     }
     const { role: {rights} } = JSON.parse(localStorage.getItem('token'));
+    const loadding = useSelector(state => state.loadding.value);
     useEffect(() => {
         Promise.all([getRights(), getChildren()]).then(res => {
             setAllRouter([
@@ -56,6 +59,7 @@ export default function Routers() {
         return rights.includes(item.key);
     }
     return (
+        <Spin size="large" spinning={loadding}>
         <Routes>
             {
                 allRouter.map(item => {
@@ -68,5 +72,6 @@ export default function Routers() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="*" element={<MissPage />} />
         </Routes>
+        </Spin>
     )
 }
